@@ -145,7 +145,7 @@ workflows:
           context: cicd-orchestrator
           filters:
             tags:
-              - /^.*/
+              - /^v.*/
   release_process:
     when:
       equal: [ release, << pipeline.parameters.gio_action >> ]
@@ -211,7 +211,7 @@ workflows:
                 # - /^*.x/
             tags:
               only:
-                - /^.*/
+                - /^v.*/
               # the job will be triggered as soon as the
               # git release tag will be created, at the end of
               # the maven/git release
@@ -231,7 +231,7 @@ workflows:
           filters:
             tags:
               only:
-                - /^.*/
+                - /^v.*/
               # only: /^[0-999].[0-999].[0-999]/
               # the job will be triggered as soon as the
               # git release tag will be created, at the end of
