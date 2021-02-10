@@ -236,6 +236,7 @@ workflows:
               ignore:
                 # - master
                 # - develop
+                - /^[0-999].[0-999].x/
                 # ---
                 - /^feature\/.*/
                 - /^support\/.*/
