@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   gio_action:
     type: enum
-    enum: [release, dry_release, blank]
+    enum: [release, dry_release, cicd_test, blank]
     default: blank
 orbs:
   secrethub: secrethub/cli@1.0.0
@@ -222,6 +222,8 @@ workflows:
                 # - /^[0-999].[0-999].[0-999]-beta/
 
   nexus_staging_prepare_bucket_test:
+    when:
+      equal: [ cicd_test, << pipeline.parameters.gio_action >> ]
     jobs:
       # - publish_bundles_job_approval:
           # type: approval
