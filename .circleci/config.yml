@@ -232,10 +232,10 @@ workflows:
             # - publish_bundles_job_approval
           context: cicd-orchestrator
           filters:
-            branches:
-              only:
-                - master
-                - /^[0-999].[0-999].x/
+            # branches:
+              # only:
+                # - master
+                # - /^[0-999].[0-999].x/
                 # ---
             tags:
               # only: /^v.*/
