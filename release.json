@@ -1,6 +1,6 @@
 {
     "name": "Gravitee.io",
-    "version": "5.4.2-SNAPSHOT",
+    "version": "5.4.2",
     "buildTimestamp": "2020-12-23T06:00:33+0000",
     "scmSshUrl": "git@github.com:gravitee-io",
     "scmHttpUrl": "https://github.com/gravitee-io/",
@@ -27,18 +27,18 @@
         },
         {
             "name": "gravitee-common",
-            "version": "1.20.0-SNAPSHOT"
+            "version": "1.20.0"
         },
         {
             "name": "gravitee-definition",
-            "version": "1.26.0-SNAPSHOT"
+            "version": "1.26.0"
         },
         {
             "name": "gravitee-gateway"
         },
         {
             "name": "gravitee-gateway-api",
-            "version": "1.24.0-SNAPSHOT"
+            "version": "1.24.0"
         },
         {
             "name": "gravitee-management-rest-api"
@@ -83,7 +83,7 @@
         },
         {
             "name": "gravitee-policy-rest-to-soap",
-            "version": "1.11.0-SNAPSHOT"
+            "version": "1.11.0"
         },
         {
             "name": "gravitee-policy-transformqueryparams",
@@ -91,7 +91,7 @@
         },
         {
             "name": "gravitee-policy-ipfiltering",
-            "version": "1.7.0-SNAPSHOT"
+            "version": "1.7.0"
         },
         {
             "name": "gravitee-policy-mock",
@@ -127,7 +127,7 @@
         },
         {
             "name": "gravitee-policy-jwt",
-            "version": "1.17.0-SNAPSHOT"
+            "version": "1.17.0"
         },
         {
             "name": "gravitee-policy-override-http-method",
@@ -147,7 +147,7 @@
         },
         {
             "name": "gravitee-policy-json-xml",
-            "version": "1.0.0-SNAPSHOT"
+            "version": "1.0.0"
         },
         {
             "name": "gravitee-policy-keyless",
@@ -179,15 +179,15 @@
         },
         {
             "name": "gravitee-reporter-api",
-            "version": "1.19.0-SNAPSHOT"
+            "version": "1.19.0"
         },
         {
             "name": "gravitee-reporter-file",
-            "version": "2.1.0-SNAPSHOT"
+            "version": "2.1.0"
         },
         {
             "name": "gravitee-reporter-tcp",
-            "version": "1.0.0-SNAPSHOT"
+            "version": "1.0.0"
         },
         {
             "name": "gravitee-reporter-tcp",
@@ -195,15 +195,15 @@
         },
         {
             "name": "gravitee-repository",
-            "version": "3.6.0-SNAPSHOT"
+            "version": "3.6.0"
         },
         {
             "name": "gravitee-repository-test",
-            "version": "3.6.0-SNAPSHOT"
+            "version": "3.6.0"
         },
         {
             "name": "gravitee-repository-mongodb",
-            "version": "3.6.0-SNAPSHOT"
+            "version": "3.6.0"
         },
         {
             "name": "gravitee-repository-redis",
@@ -211,11 +211,11 @@
         },
         {
             "name": "gravitee-elasticsearch",
-            "version": "3.6.0-SNAPSHOT"
+            "version": "3.6.0"
         },
         {
             "name": "gravitee-repository-jdbc",
-            "version": "3.6.0-SNAPSHOT"
+            "version": "3.6.0"
         },
         {
             "name": "gravitee-repository-hazelcast",
@@ -239,7 +239,7 @@
         },
         {
             "name": "gravitee-resource-oauth2-provider-am",
-            "version": "1.13.0-SNAPSHOT"
+            "version": "1.13.0"
         },
         {
             "name": "gravitee-resource-oauth2-provider-keycloak",
@@ -275,7 +275,7 @@
         },
         {
             "name": "gravitee-repository-gateway-bridge-http",
-            "version": "3.6.0-SNAPSHOT"
+            "version": "3.6.0"
         },
         {
             "name": "gravitee-policy-url-rewriting",
@@ -347,15 +347,15 @@
         },
         {
             "name": "gravitee-policy-retry",
-            "version": "1.1.0-SNAPSHOT"
+            "version": "1.1.0"
         },
         {
             "name": "gravitee-policy-assign-metrics",
-            "version": "1.0.0-SNAPSHOT"
+            "version": "1.0.0"
         },
         {
             "name": "gravitee-policy-http-signature",
-            "version": "1.0.0-SNAPSHOT"
+            "version": "1.0.0"
         }
     ],
     "buildDependencies": [
