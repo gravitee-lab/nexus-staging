@@ -229,7 +229,8 @@ workflows:
           context: cicd-orchestrator
           filters:
             tags:
-              only: /^[0-999].[0-999].[0-999]/
+              only: /.*/
+              # only: /^[0-999].[0-999].[0-999]/
               # the job will be triggered as soon as the
               # git release tag will be created, at the end of
               # the maven/git release
