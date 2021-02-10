@@ -9,15 +9,15 @@ orbs:
   secrethub: secrethub/cli@1.0.0
   gravitee: gravitee-io/gravitee@dev:1.0.4
 jobs:
-  empty_job:
-    docker:
-     - image: alpine
-    resource_class: small
-    working_directory: /mnt/ramdisk
-    steps:
-      - run:
-          name: "This is a dummy empty job (isn't it ?)"
-          command: echo "No task is executed."
+  # empty_job:
+    # docker:
+     # - image: alpine
+    # resource_class: small
+    # working_directory: /mnt/ramdisk
+    # steps:
+      # - run:
+          # name: "This is a dummy empty job (isn't it ?)"
+          # command: echo "No task is executed."
 
   dry_run_orchestrator:
     machine:
@@ -222,8 +222,8 @@ workflows:
                 # - /^[0-999].[0-999].[0-999]-beta/
 
   nexus_staging_prepare_bucket_test:
-    when:
-      equal: [ cicd_test, << pipeline.parameters.gio_action >> ]
+    # when:
+      # equal: [ cicd_test, << pipeline.parameters.gio_action >> ]
     jobs:
       # - publish_bundles_job_approval:
           # type: approval
