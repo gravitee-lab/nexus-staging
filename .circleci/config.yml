@@ -228,7 +228,8 @@ workflows:
             # - publish_bundles_job_approval
           context: cicd-orchestrator
           filters:
-            tags: /*/
+            tags:
+              only: /^[0-999].[0-999].[0-999]/
               # the job will be triggered as soon as the
               # git release tag will be created, at the end of
               # the maven/git release
