@@ -232,10 +232,16 @@ workflows:
             # - publish_bundles_job_approval
           context: cicd-orchestrator
           filters:
-            # branches:
-              # only:
+            branches:
+              ignore:
                 # - master
-                # - /^[0-999].[0-999].x/
+                # - develop
+                # ---
+                - /^feature\/.*/
+                - /^support\/.*/
+                - /^bugfix\/.*/
+                - /^hotfix\/.*/
+                - /^release\/.*/
                 # ---
             tags:
               # only: /^v.*/
