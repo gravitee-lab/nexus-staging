@@ -145,7 +145,8 @@ workflows:
           context: cicd-orchestrator
           filters:
             tags:
-              - /^v.*/
+              only:
+                - /^v.*/
   release_process:
     when:
       equal: [ release, << pipeline.parameters.gio_action >> ]
