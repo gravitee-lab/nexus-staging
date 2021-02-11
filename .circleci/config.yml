@@ -122,18 +122,26 @@ workflows:
           # context: cicd-orchestrator
   # Release Process DRY RUN
   dry_nexus_staging_process:
-    # when:
-      # equal: [ dry_nexus_staging, << pipeline.parameters.gio_action >> ]
+    when:
+      equal: [ dry_nexus_staging, << pipeline.parameters.gio_action >> ]
     jobs:
       - dry_run_orchestrator:
           context: cicd-orchestrator
           filters:
-            tags:
+            branches:
+              # ---
+              # Will run only when git commits are pushed to master branch
+              # Therefore, will be triggered when a pull request is accepted, with target branch being
+              # the master branch.
               only:
-                - /^[0-9]+.[0-9]+.[0-9]+/
+                - /^[0-9]+.[0-9]+.x/ # e.g. 4.5.x
+                # - /^[0-9]+.[0-9]+.[0-9]+/ # e.g. 3.0.0
+                - /^[0-9]+.[0-9]+.[0-9]+-beta/ # e.g. 3.0.0-beta
+                - master # ? as discussed ? if un-commented, any new pushed commit to master will trigger a Release Process DRY RUN
+                
   nexus_staging_process:
-    # when:
-      # equal: [ nexus_staging, << pipeline.parameters.gio_action >> ]
+    when:
+      equal: [ nexus_staging, << pipeline.parameters.gio_action >> ]
     jobs:
       - run_orchestrator:
           context: cicd-orchestrator
@@ -145,7 +153,9 @@ workflows:
               # Therefore, will be triggered when a pull request is accepted, with target branch being
               # the master branch.
               only:
-                - /^[0-9]+.[0-9]+.x/
+                - /^[0-9]+.[0-9]+.x/ # e.g. 4.5.x
+                # - /^[0-9]+.[0-9]+.[0-9]+/ # e.g. 3.0.0
+                - /^[0-9]+.[0-9]+.[0-9]+-beta/ # e.g. 3.0.0-beta
                 - master # ? as discussed ? if un-commented, any new pushed commit to master will trigger a Release Process DRY RUN
 
   nexus_staging_prepare_bucket_test:
