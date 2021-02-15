@@ -47,13 +47,16 @@ jobs:
                     echo $GIT_SSH_PUB_KEY > /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa.pub
                     echo $GIT_SSH_PRV_KEY > /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa
                     ssh-keygen -R github.com
-                    # ssh-keygen -R [ip_address]
-                    # ssh-keygen -R [hostname],[ip_address]
-                    # ssh-keyscan -H [hostname],[ip_address] >> ~/.ssh/known_hosts
-                    # ssh-keyscan -H [ip_address] >> ~/.ssh/known_hosts
                     mkdir -p ~/.ssh
-                    chmod 700 ~/.ssh
+                    touch ~/.ssh/known_hosts
+                    chmod 700 -R ~/.ssh/
                     ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+                    chmod 700 /tmp/graviteebot/.secrets/.ssh.gravitee.io
+                    chmod 644 /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa.pub
+                    chmod 600 /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa
+                    ssh-add -D
+                    # cat /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa
+                    # ssh-add /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa
                     ssh -Ti /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa git@github.com || true
                     exit 0
       - run:
