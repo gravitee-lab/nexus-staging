@@ -145,6 +145,16 @@ jobs:
           secrethub_org: $SECRETHUB_ORG
           secrethub_repo: $SECRETHUB_REPO
       - run:
+          name: "SSH test git config"
+          command: |
+                    echo "check [${HOME}/.ssh.gravitee.io/]"
+                    ls -allh ${HOME}/.ssh.gravitee.io/
+                    echo "check [${HOME}/.ssh.gravitee.io/id_rsa]"
+                    ls -allh ${HOME}/.ssh.gravitee.io/id_rsa
+                    echo "check [${HOME}/.ssh.gravitee.io/id_rsa.pub]"
+                    ls -allh ${HOME}/.ssh.gravitee.io/id_rsa.pub
+                    ssh -i ~/.ssh.gravitee.io/id_rsa
+      - run:
           name: "Retieving Release.json"
           command: |
                     export OPS_HOME=$(pwd)
