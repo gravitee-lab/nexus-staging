@@ -28,23 +28,38 @@ jobs:
     working_directory: /mnt/ramdisk
     environment:
       GIO_PRODUCT_VERSION: << pipeline.parameters.gio_product_version >>
+      RELEASE_REPO: git@github.com:gravitee-lab/release-with-nexus-staging-test1
+      SECRETHUB_ORG: gravitee-lab
+      SECRETHUB_REPO: cicd
     steps:
+      - git_config:
+          secrethub_org: $SECRETHUB_ORG
+          secrethub_repo: $SECRETHUB_REPO
       - run:
           name: "This is a dummy empty job (isn't it ?)"
           command: |
                     echo "value of GIO_PRODUCT_VERSION = [$GIO_PRODUCT_VERSION]"
                     echo "value of GIO_PRODUCT_VERSION = [${GIO_PRODUCT_VERSION}]"
+                    echo "value of RELEASE_REPO = [${RELEASE_REPO}]"
+                    echo "value of SECRETHUB_ORG = [${SECRETHUB_ORG}]"
+                    echo "value of SECRETHUB_REPO = [${SECRETHUB_REPO}]"
 
   dry_run_orchestrator:
     machine:
       image: 'ubuntu-1604:201903-01'
     environment:
       GITHUB_ORG: ${GITHUB_ORG}
+      GIO_PRODUCT_VERSION: << pipeline.parameters.gio_product_version >>
+      RELEASE_REPO: git@github.com:gravitee-lab/release-with-nexus-staging-test1
       SECRETHUB_ORG: gravitee-lab
       SECRETHUB_REPO: cicd
     steps:
       - checkout
       - secrethub/install
+      - run:
+          name: "Retieving Releas.json"
+          command: |
+                    docker pull quay.io/gravitee-lab/cicd-orchestrator:stable-latest
       - run:
           name: "Docker pull"
           command: |
