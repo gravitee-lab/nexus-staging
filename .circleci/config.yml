@@ -153,7 +153,7 @@ jobs:
                     ls -allh ${HOME}/.ssh.gravitee.io/id_rsa
                     echo "check [${HOME}/.ssh.gravitee.io/id_rsa.pub]"
                     ls -allh ${HOME}/.ssh.gravitee.io/id_rsa.pub
-                    ssh -i ~/.ssh.gravitee.io/id_rsa
+                    ssh -Ti ~/.ssh.gravitee.io/id_rsa git@github.com
       - run:
           name: "Retieving Release.json"
           command: |
