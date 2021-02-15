@@ -4,7 +4,7 @@ parameters:
   gio_action:
     type: enum
     enum: [release, dry_nexus_staging, nexus_staging, cicd_test, blank]
-    default: cicd_test
+    default: blank
   gio_product_version:
     type: string
     default: "78.15.42"
@@ -145,7 +145,7 @@ jobs:
           secrethub_org: gravitee-lab
           secrethub_repo: cicd
       - run:
-          name: "SSH test git config"
+          name: "Test Git config"
           command: |
                     echo "check [${HOME}/.ssh.gravitee.io/]"
                     ls -allh ${HOME}/.ssh.gravitee.io/
@@ -153,19 +153,22 @@ jobs:
                     ls -allh ${HOME}/.ssh.gravitee.io/id_rsa
                     echo "check [${HOME}/.ssh.gravitee.io/id_rsa.pub]"
                     ls -allh ${HOME}/.ssh.gravitee.io/id_rsa.pub
+                    git config --list
                     ssh -Ti ~/.ssh.gravitee.io/id_rsa git@github.com || true
       - run:
-          name: "Retieving Release.json"
+          name: "Retrieving Release.json"
           command: |
                     export OPS_HOME=$(pwd)
                     echo "Current diectory: [$(pwd)]"
-                    git clone ${RELEASE_REPO} ${HOME}/retrieved-release-repo
-                    export LOCAL_RELEASE_REPO=${HOME}/retrieved-release-repo
-
+                    export LOCAL_RELEASE_REPO=$(mktemp -d -t "s3cmd_install_ops-XXXXXXXXXX")
+                    git clone ${RELEASE_REPO} ${LOCAL_RELEASE_REPO}
+                    cd ${LOCAL_RELEASE_REPO}
+                    git checkout ${GIO_PRODUCT_VERSION}
+                    cp -f ${LOCAL_RELEASE_REPO}/release.json ${OPS_HOME}/release.json
+                    cd ${OPS_HOME}
       - run:
           name: "Docker pull"
           command: |
-                    exit 1
                     docker pull quay.io/gravitee-lab/cicd-orchestrator:stable-latest
       - run:
           name: "Running the Gio CICD Orchestrator as docker container"
