@@ -10,7 +10,7 @@ parameters:
     default: $GRAVITEE_PRODUCT_VERSION
 orbs:
   secrethub: secrethub/cli@1.0.0
-  gravitee: gravitee/gravitee@dev:1.0.4
+  gravitee: graviteeio/gravitee@dev:1.0.4
 jobs:
   # empty_job:
     # docker:
@@ -32,7 +32,7 @@ jobs:
       SECRETHUB_ORG: gravitee-lab
       SECRETHUB_REPO: cicd
     steps:
-      - git_config:
+      - gravitee/git_config:
           secrethub_org: $SECRETHUB_ORG
           secrethub_repo: $SECRETHUB_REPO
       - run:
