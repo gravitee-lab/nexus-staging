@@ -32,6 +32,7 @@ jobs:
       SECRETHUB_ORG: gravitee-lab
       SECRETHUB_REPO: cicd
     steps:
+      - secrethub/install
       - gravitee/git_config:
           secrethub_org: $SECRETHUB_ORG
           secrethub_repo: $SECRETHUB_REPO
