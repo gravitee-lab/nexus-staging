@@ -4,10 +4,10 @@ parameters:
   gio_action:
     type: enum
     enum: [release, dry_nexus_staging, nexus_staging, cicd_test, blank]
-    default: blank
+    default: cicd_test
   gio_product_version:
     type: string
-    default: $GRAVITEE_PRODUCT_VERSION
+    default: "78.15.42"
 orbs:
   secrethub: secrethub/cli@1.0.0
   gravitee: gravitee-io/gravitee@dev:1.0.4
@@ -64,11 +64,64 @@ jobs:
                     echo "value of RELEASE_REPO = [${RELEASE_REPO}]"
                     echo "value of SECRETHUB_ORG = [${SECRETHUB_ORG}]"
                     echo "value of SECRETHUB_REPO = [${SECRETHUB_REPO}]"
+                    # export OPS_HOME=$(pwd)
+                    # echo "Current diectory: [$(pwd)]"
+                    # git clone ${RELEASE_REPO} ${HOME}/retrieved-release-repo
+                    # export LOCAL_RELEASE_REPO=${HOME}/retrieved-release-repo
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - graviteebot
+
+  cicd_test_job2:
+    docker:
+     - image: 'cimg/base:stable'
+    resource_class: medium
+    # working_directory: /mnt/ramdisk
+    environment:
+      GIO_PRODUCT_VERSION: << pipeline.parameters.gio_product_version >>
+      RELEASE_REPO: git@github.com:gravitee-lab/release-with-nexus-staging-test1
+    steps:
+      - attach_workspace:
+          at: /tmp
+      - run:
+          name: "Git SSH config"
+          command: |
+                    # mkdir -p /tmp/graviteebot/.secrets/.ssh.gravitee.io
+                    # echo $GIT_SSH_PUB_KEY > /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa.pub
+                    # echo $GIT_SSH_PRV_KEY > /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa
+                    echo "check [/tmp]"
+                    ls -allh /tmp
+                    echo "check [/tmp/graviteebot]"
+                    ls -allh /tmp/graviteebot
+                    echo "check [/tmp/graviteebot/.secrets/.ssh.gravitee.io]"
+                    ls -allh /tmp/graviteebot/.secrets/.ssh.gravitee.io
+                    # --
+                    ssh-keygen -R github.com
+                    mkdir -p ~/.ssh
+                    chmod 700 ~/.ssh
+                    ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+                    ssh -Ti /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa git@github.com || true
+
+                    chmod 700 "/tmp/graviteebot/.secrets/.ssh.gravitee.io/"
+                    chmod 644 "/tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa.pub"
+                    chmod 600 "/tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa"
+                    ssh-add -D
+                    ssh-add "/tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa"
+
+      - run:
+          name: "This is a dummy empty job (isn't it ?)"
+          command: |
+                    echo "value of GIO_PRODUCT_VERSION = [$GIO_PRODUCT_VERSION]"
+                    echo "value of GIO_PRODUCT_VERSION = [${GIO_PRODUCT_VERSION}]"
+                    echo "value of RELEASE_REPO = [${RELEASE_REPO}]"
+                    echo "value of SECRETHUB_ORG = [${SECRETHUB_ORG}]"
+                    echo "value of SECRETHUB_REPO = [${SECRETHUB_REPO}]"
                     export OPS_HOME=$(pwd)
                     echo "Current diectory: [$(pwd)]"
                     git clone ${RELEASE_REPO} ${HOME}/retrieved-release-repo
                     export LOCAL_RELEASE_REPO=${HOME}/retrieved-release-repo
-                    
+
 
   dry_run_orchestrator:
     machine:
@@ -175,6 +228,10 @@ workflows:
       equal: [ cicd_test, << pipeline.parameters.gio_action >> ]
     jobs:
       - cicd_test_job:
+          context: cicd-orchestrator
+      - cicd_test_job2:
+          requires:
+            - cicd_test_job
           context: cicd-orchestrator
   dry_nexus_staging_process:
     when:
