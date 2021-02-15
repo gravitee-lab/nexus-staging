@@ -165,6 +165,7 @@ jobs:
       - run:
           name: "Docker pull"
           command: |
+                    exit 1
                     docker pull quay.io/gravitee-lab/cicd-orchestrator:stable-latest
       - run:
           name: "Running the Gio CICD Orchestrator as docker container"
