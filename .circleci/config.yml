@@ -31,11 +31,22 @@ jobs:
       RELEASE_REPO: git@github.com:gravitee-lab/release-with-nexus-staging-test1
       SECRETHUB_ORG: gravitee-lab
       SECRETHUB_REPO: cicd
+      GIT_SSH_PUB_KEY: 'secrethub://graviteeio/cicd/graviteebot/git/ssh/public_key'
+      GIT_SSH_PRV_KEY: 'secrethub://graviteeio/cicd/graviteebot/git/ssh/private_key'
     steps:
-      - secrethub/install
-      - gravitee/git_config:
-          secrethub_org: $SECRETHUB_ORG
-          secrethub_repo: $SECRETHUB_REPO
+      # secrethub cannot be installed directly into a docker image
+      # So git_config orb cannot be used as is into a docker container.
+      #
+      # - secrethub/install
+      # - gravitee/git_config:
+          # secrethub_org: $SECRETHUB_ORG
+          # secrethub_repo: $SECRETHUB_REPO
+      - secrethub/exec:
+          command: |
+                    mkdir -p /tmp/graviteebot/.secrets/.ssh.gravitee.io
+                    echo $GIT_SSH_PUB_KEY > /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa.pub
+                    echo $GIT_SSH_PRV_KEY > /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa
+                    ssh -Ti /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa git@github.com
       - run:
           name: "This is a dummy empty job (isn't it ?)"
           command: |
