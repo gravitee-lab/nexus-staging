@@ -10,7 +10,7 @@ parameters:
     default: $GRAVITEE_PRODUCT_VERSION
 orbs:
   secrethub: secrethub/cli@1.0.0
-  gravitee: gravitee-io/gravitee@dev:1.0.4
+  gravitee: gravitee/gravitee@dev:1.0.4
 jobs:
   # empty_job:
     # docker:
