@@ -64,6 +64,11 @@ jobs:
                     echo "value of RELEASE_REPO = [${RELEASE_REPO}]"
                     echo "value of SECRETHUB_ORG = [${SECRETHUB_ORG}]"
                     echo "value of SECRETHUB_REPO = [${SECRETHUB_REPO}]"
+                    export OPS_HOME=$(pwd)
+                    echo "Current diectory: [$(pwd)]"
+                    git clone ${RELEASE_REPO} ${HOME}/retrieved-release-repo
+                    export LOCAL_RELEASE_REPO=${HOME}/retrieved-release-repo
+                    
 
   dry_run_orchestrator:
     machine:
@@ -82,9 +87,13 @@ jobs:
           secrethub_org: $SECRETHUB_ORG
           secrethub_repo: $SECRETHUB_REPO
       - run:
-          name: "Retieving Releas.json"
+          name: "Retieving Release.json"
           command: |
-                    docker pull quay.io/gravitee-lab/cicd-orchestrator:stable-latest
+                    export OPS_HOME=$(pwd)
+                    echo "Current diectory: [$(pwd)]"
+                    git clone ${RELEASE_REPO} ${HOME}/retrieved-release-repo
+                    export LOCAL_RELEASE_REPO=${HOME}/retrieved-release-repo
+
       - run:
           name: "Docker pull"
           command: |
