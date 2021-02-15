@@ -23,9 +23,9 @@ jobs:
           # command: echo "No task is executed."
   cicd_test_job:
     docker:
-     - image: alpine
-    resource_class: small
-    working_directory: /mnt/ramdisk
+     - image: 'cimg/base:stable'
+    resource_class: medium
+    # working_directory: /mnt/ramdisk
     environment:
       GIO_PRODUCT_VERSION: << pipeline.parameters.gio_product_version >>
       RELEASE_REPO: git@github.com:gravitee-lab/release-with-nexus-staging-test1
