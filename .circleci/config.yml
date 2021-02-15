@@ -106,8 +106,8 @@ jobs:
                     chmod 644 /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa.pub
                     chmod 600 /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa
                     ssh-add -D
-                    cat /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa
-                    ssh-add /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa
+                    # cat /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa
+                    # ssh-add /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa
                     ssh -Ti /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa git@github.com || true
 
 
