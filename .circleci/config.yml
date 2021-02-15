@@ -97,13 +97,14 @@ jobs:
                     echo "check [/tmp/graviteebot/.secrets/.ssh.gravitee.io]"
                     ls -allh /tmp/graviteebot/.secrets/.ssh.gravitee.io
                     # --
-                    ssh-keygen -R github.com
                     mkdir -p ~/.ssh
                     chmod 700 ~/.ssh
+                    touch ~/.ssh/known_hosts
+                    ssh-keygen -R github.com
                     ssh-keyscan -H github.com >> ~/.ssh/known_hosts
                     ssh -Ti /tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa git@github.com || true
 
-                    chmod 700 "/tmp/graviteebot/.secrets/.ssh.gravitee.io/"
+                    chmod 700 "/tmp/graviteebot/.secrets/.ssh.gravitee.io"
                     chmod 644 "/tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa.pub"
                     chmod 600 "/tmp/graviteebot/.secrets/.ssh.gravitee.io/id_rsa"
                     ssh-add -D
