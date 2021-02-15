@@ -31,8 +31,8 @@ jobs:
       RELEASE_REPO: git@github.com:gravitee-lab/release-with-nexus-staging-test1
       SECRETHUB_ORG: gravitee-lab
       SECRETHUB_REPO: cicd
-      GIT_SSH_PUB_KEY: 'secrethub://graviteeio/cicd/graviteebot/git/ssh/public_key'
-      GIT_SSH_PRV_KEY: 'secrethub://graviteeio/cicd/graviteebot/git/ssh/private_key'
+      GIT_SSH_PUB_KEY: 'secrethub://gravitee-lab/cicd/graviteebot/git/ssh/public_key'
+      GIT_SSH_PRV_KEY: 'secrethub://gravitee-lab/cicd/graviteebot/git/ssh/private_key'
     steps:
       # secrethub cannot be installed directly into a docker image
       # So git_config orb cannot be used as is into a docker container.
