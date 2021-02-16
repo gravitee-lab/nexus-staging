@@ -1,17 +1,19 @@
 {
     "name": "Gravitee.io",
-    "version": "4.1.4-SNAPSHOT",
+    "version": "4.1.8-SNAPSHOT",
     "buildTimestamp": "2020-10-15T07:19:32+0000",
     "scmSshUrl": "git@github.com:gravitee-io",
     "scmHttpUrl": "https://github.com/gravitee-io/",
     "components": [
         {
             "name": "graviteek-cicd-test-maven-project-g1",
-            "version": "4.1.43-SNAPSHOT"
+            "version": "4.1.46",
+            "since": "4.1.7"
         },
         {
             "name": "graviteek-cicd-test-maven-project-g2",
-            "version": "4.2.70-SNAPSHOT"
+            "version": "4.2.73",
+            "since": "4.1.7"
         },
         {
             "name": "graviteek-cicd-test-maven-project-g3",
@@ -328,32 +330,18 @@
     ],
     "buildDependencies": [
         [
-            "graviteek-cicd-test-maven-project-g1"
-        ],
-        [
-            "graviteek-cicd-test-maven-project-g2"
-        ],
-        [
-            "graviteek-cicd-test-maven-project-g3"
-        ],
-        [
-            "graviteek-cicd-test-maven-project-fail"
-        ],
-        [
-            "gravitee-common"
-        ],
-        [
+            "graviteek-cicd-test-maven-project-g1",
+            "graviteek-cicd-test-maven-project-g2",
+            "graviteek-cicd-test-maven-project-g3",
+            "graviteek-cicd-test-maven-project-fail",
+            "gravitee-common",
             "gravitee-repository",
             "gravitee-expression-language",
             "gravitee-service-discovery-api",
-            "gravitee-notifier-api"
-        ],
-        [
+            "gravitee-notifier-api",
             "gravitee-repository-test",
             "gravitee-service-discovery-consul",
-            "gravitee-service-discovery-eureka"
-        ],
-        [
+            "gravitee-service-discovery-eureka",
             "gravitee-reporter-api",
             "gravitee-resource-api",
             "gravitee-definition",
@@ -365,31 +353,17 @@
             "gravitee-alert-api",
             "gravitee-notifier-email",
             "gravitee-identityprovider-api",
-            "gravitee-cockpit-api"
-        ],
-        [
-            "gravitee-gateway-api"
-        ],
-        [
-            "gravitee-policy-api"
-        ],
-        [
-            "gravitee-plugin"
-        ],
-        [
-            "graviteeio-node"
-        ],
-        [
+            "gravitee-cockpit-api",
+            "gravitee-gateway-api",
+            "gravitee-policy-api",
+            "gravitee-plugin",
+            "graviteeio-node",
             "gravitee-gateway",
-            "gravitee-resource-oauth2-provider-api"
-        ],
-        [
+            "gravitee-resource-oauth2-provider-api",
             "gravitee-resource-cache",
             "gravitee-resource-oauth2-provider-generic",
             "gravitee-resource-oauth2-provider-am",
-            "gravitee-resource-oauth2-provider-keycloak"
-        ],
-        [
+            "gravitee-resource-oauth2-provider-keycloak",
             "gravitee-policy-apikey",
             "gravitee-policy-ratelimit",
             "gravitee-policy-request-content-limit",
@@ -433,9 +407,7 @@
             "gravitee-fetcher-git",
             "gravitee-fetcher-gitlab",
             "gravitee-fetcher-bitbucket",
-            "gravitee-fetcher-github"
-        ],
-        [
+            "gravitee-fetcher-github",
             "gravitee-management-rest-api",
             "gravitee-management-webui",
             "gravitee-portal-webui"
