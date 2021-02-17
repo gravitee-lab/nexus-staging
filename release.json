@@ -1,23 +1,32 @@
 {
     "name": "Gravitee.io",
-    "version": "4.1.8-SNAPSHOT",
+    "version": "4.1.13",
     "buildTimestamp": "2020-10-15T07:19:32+0000",
     "scmSshUrl": "git@github.com:gravitee-io",
     "scmHttpUrl": "https://github.com/gravitee-io/",
     "components": [
         {
             "name": "graviteek-cicd-test-maven-project-g1",
-            "version": "4.1.46",
-            "since": "4.1.7"
+            "version": "4.1.47",
+            "since": "4.1.9"
         },
         {
             "name": "graviteek-cicd-test-maven-project-g2",
-            "version": "4.2.73",
-            "since": "4.1.7"
+            "version": "4.2.78-SNAPSHOT",
+            "since": "4.1.13"
         },
         {
             "name": "graviteek-cicd-test-maven-project-g3",
             "version": "4.3.1"
+        },
+        {
+            "name": "cicd-test-gravitee-policy-ratelimit",
+            "version": "1.11.5-SNAPSHOT",
+            "since": "4.1.13"
+        },
+        {
+            "name": "cicd-test-gravitee-cockpit-connectors",
+            "version": "1.0.1"
         },
         {
             "name": "gravitee-common",
@@ -334,6 +343,8 @@
             "graviteek-cicd-test-maven-project-g2",
             "graviteek-cicd-test-maven-project-g3",
             "graviteek-cicd-test-maven-project-fail",
+            "cicd-test-gravitee-policy-ratelimit",
+            "cicd-test-gravitee-cockpit-connectors",
             "gravitee-common",
             "gravitee-repository",
             "gravitee-expression-language",
